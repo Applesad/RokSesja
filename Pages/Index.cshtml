@@ -8,10 +8,16 @@
     <h1 class="display-4">Welcome @Model.Name</h1>
     
     <div class="mb-3">
-        <label asp-for="FizzBuzz.Number" class="form-label"></label>
-        <input asp-for="FizzBuzz.Number" class="form-control" placeholder="Podaj numer" />
-        <span asp-validation-for="FizzBuzz.Number" class="text-danger"></span>
+        <label asp-for="Rok.Number" class="form-label"></label>
+        <input asp-for="Rok.Number" class="form-control" placeholder="Podaj rok" />
+        <span style ="color:red" asp-validation-for="Rok.Number" class="alert-link"></span>
+        
     </div> 
+    <div class="mb-3">
+        <label asp-for="Rok.Imie" class="form-label"></label>
+        <input asp-for="Rok.Imie" class="form-control" placeholder="Podaj imie" />
+        <span style ="color:red" asp-validation-for="Rok.Imie" class="alert-link"></span>
+    </div>
       
     <button type="submit" class="btn btn-primary">Zatwierdź</button>
 </form>
@@ -19,6 +25,6 @@
 @if (TempData["AlertMessage"] != null)
 {
     <div class="alert alert-success mt-3 p-3" role="alert">
-        @TempData["AlertMessage"]
+        @Model.Rok.Imie @Model.Urodzenie sie w @Model.Rok.Number. To byl rok @TempData["AlertMessage"].
     </div>
 }

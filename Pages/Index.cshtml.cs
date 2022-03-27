@@ -13,8 +13,9 @@ namespace FizzBuzz2.Pages
         public string?   Name { get; set; }
 
         [BindProperty]
-        public FizzBuzz? FizzBuzz { get;set; }
-        public List<FizzBuzz>? Fizzlist = new() { };
+        public Rok? Rok { get;set; }
+        public List<Rok>? Latalista = new() { };
+        public string Urodzenie;
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -40,9 +41,14 @@ namespace FizzBuzz2.Pages
                 }
                 return Page();
             }
-            
-            TempData["AlertMessage"] = FizzBuzz.Check();
-            FizzBuzz.Powiadomienie = FizzBuzz.Check();
+            if ((Rok.Imie[Rok.Imie.Length - 1] != 'a') || (Rok.Imie == "Kuba"))
+            {
+                Urodzenie = "urodzil";
+            }
+            else Urodzenie = "urodzila";
+            TempData["AlertMessage"] = Rok.Check();
+            Rok.Powiadomienie = Rok.Check();
+
             if (string.IsNullOrWhiteSpace(Name))
             {
                 Name = "User";
@@ -52,16 +58,16 @@ namespace FizzBuzz2.Pages
                 var Data = HttpContext.Session.GetString("Data");
                 if (Data == null)
                 {
-                    Fizzlist = new List<FizzBuzz>();
-                    Fizzlist.Add(FizzBuzz);
-                    HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Fizzlist));
+                    Latalista = new List<Rok>();
+                    Latalista.Add(Rok);
+                    HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Latalista));
 
                 }
                 else
                 {
-                    Fizzlist = JsonConvert.DeserializeObject<List<FizzBuzz>>(Data);
-                    Fizzlist.Add(FizzBuzz);
-                    HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Fizzlist));
+                    Latalista = JsonConvert.DeserializeObject<List<Rok>>(Data);
+                    Latalista.Add(Rok);
+                    HttpContext.Session.SetString("Data", JsonConvert.SerializeObject(Latalista));
 
                 }
                 

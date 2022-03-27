@@ -8,15 +8,15 @@ namespace FizzBuzz2.Pages
 {
     public class SavedInSessionModel : PageModel
     {
-        public FizzBuzz? FizzBuzz { get; set; }
+        public Rok? Lata { get; set; }
 
-        public List<FizzBuzz>? Fizzlist = new() { };
+        public List<Rok>? Latalista = new() { };
         public void OnGet()
         {
             var Data = HttpContext.Session.GetString("Data");
             if (Data != null)
             {
-                Fizzlist = JsonConvert.DeserializeObject<List<FizzBuzz>>(Data);
+                Latalista = JsonConvert.DeserializeObject<List<Rok>>(Data);
 
             }
             
